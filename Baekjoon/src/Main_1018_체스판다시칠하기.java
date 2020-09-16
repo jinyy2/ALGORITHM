@@ -18,24 +18,15 @@ public class Main_1018_체스판다시칠하기 {
 		for (int i = 0; i < N; i++) {
 			map[i] = br.readLine().toCharArray();
 		}
-//		result = check(0, 0, map[0][0]);
 		for (int i = 0; i <= N - 8; i++) {
 			for (int j = 0; j <= M - 8; j++) {
-//				System.out.println("실행횟수");
 				int temp = check(i, j, map[i][j]);
 				result = Math.min(result, temp);
 			}
 		}
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				System.out.print(map[i][j]);
-			}
-			System.out.println();
-		}
 		System.out.println(result);
 	}
 
-//	0246,1357
 	private static int check(int i, int j, char ch) {
 		int min = 0;
 		for (int r = i; r < i + 8; r++) {
@@ -55,18 +46,15 @@ public class Main_1018_체스판다시칠하기 {
 					if (c % 2 == 0) {
 						if (map[r][c] == ch)
 							min++;
-
 					} else if (c % 2 == 1) {
 						if (map[r][c] != ch)
 							min++;
-
 					}
 				}
-
 			}
 		}
-		System.out.println(min);
-		if(min >32) min = 64-min;
+		if (min > 32)
+			min = 64 - min;
 		return min;
 	}
 
