@@ -11,7 +11,7 @@ public class Solution_스택큐_프린터 {
 		
 		System.out.println(solution(priorities,location));
 	}
-	class Document{
+	static class Document{
         int idx;
         int order;
         public Document(int idx,int order){
@@ -23,7 +23,7 @@ public class Solution_스택큐_프린터 {
         int answer = 0;
         Queue<Document> printer = new LinkedList<>();
         for(int i=0;i<priorities.length;i++){
-            printer.offer(new Document(i,priorities[i]));
+        	printer.offer(new Document(i,priorities[i]));
         }
         loop: while(!printer.isEmpty()){
             
