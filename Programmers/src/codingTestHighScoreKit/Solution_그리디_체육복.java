@@ -1,44 +1,47 @@
 package codingTestHighScoreKit;
 
+import java.util.*;
+
 public class Solution_그리디_체육복 {
 
 	public static void main(String[] args) {
 		int n = 5;
 		int[] lost = { 1, 2 };
-		int[] reserve = { 2,3 };
+		int[] reserve = { 2, 3 };
 		System.out.println(solution(n, lost, reserve));
 	}
 
 	public static int solution(int n, int[] lost, int[] reserve) {
 		int answer = 0;
-		boolean[] visited = new boolean[n + 1];
+		int[] stu = new int[n];
+		boolean[] visited = new boolean[n];
+
+		Arrays.fill(stu, 1);
 		for (int i = 0; i < lost.length; i++) {
-			visited[lost[i]] = true; // 체육복이 없는 사람
+			stu[lost[i] - 1]--;
 		}
-		boolean[] reserveVisited = new boolean[visited.length];
 		for (int i = 0; i < reserve.length; i++) {
-			reserveVisited[reserve[i]] = true; // 체육복을 빌려줄 수 있는 사람
+			visited[reserve[i] - 1] = true;
 		}
-		int[] di = { -1, 1 };
-		for (int i = 0; i < visited.length; i++) {
-			if (visited[i]) { // 체육복이 없어
-				for (int d = 0; d < 2; d++) {
-					int ni = i + di[d];
-					if (!(1 <= ni && ni < visited.length))
-						continue;
-					if (reserveVisited[ni]) // 체육복이 있어
-					{
-						reserveVisited[ni] = false;
-						visited[i] = false;
-					}
+		for (int i = 0; i < stu.length; i++) {
+			if (stu[i] == 0) {
+				if (visited[i]) {
+					stu[i] = 1;
+					visited[i] = false;
+				} else if (i > 0 && stu[i - 1] == 1 && visited[i - 1]) {
+					visited[i - 1] = false;
+					stu[i] = 1;
+				} else if (i < stu.length - 1 && stu[i + 1] == 1 && visited[i + 1]) {
+					visited[i + 1] = false;
+					stu[i] = 1;
 				}
 			}
 		}
-		for (int i = 1; i < visited.length; i++) {
-			if (!visited[i])
+
+		for (int i : stu) {
+			if (i > 0)
 				answer++;
 		}
 		return answer;
 	}
-
 }
