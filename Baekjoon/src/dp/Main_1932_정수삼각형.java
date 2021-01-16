@@ -11,7 +11,7 @@ public class Main_1932_정수삼각형 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		int N = Integer.parseInt(br.readLine().trim());
-		int[][] triangle = new int[5][];
+		int[][] triangle = new int[N][];
 
 		for (int i = 0; i < N; i++) {
 			triangle[i] = new int[i + 1];
