@@ -16,9 +16,6 @@ public class Main_2565_전깃줄 {
 			this.left = left;
 			this.right = right;
 		}
-		public int compareTo(Point p) {
-		return this.left - p.left;
-	}
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -31,7 +28,12 @@ public class Main_2565_전깃줄 {
 			st = new StringTokenizer(br.readLine());
 			wire[i] = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 		}
-		Arrays.sort(wire);
+		Arrays.sort(wire, new Comparator<Point>() {
+			@Override
+			public int compare(Point p1, Point p2) {
+				return p1.left - p2.left;
+			}
+		});
 		int[] dp = new int[N];
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < i; j++) {

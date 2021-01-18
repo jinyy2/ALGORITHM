@@ -11,8 +11,8 @@ public class Main_1463_1로만들기 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		dp = new int[10000001];
 		Arrays.fill(dp, Integer.MAX_VALUE);
+		dp = new int[10000001];
 		int N = Integer.parseInt(br.readLine());
 
 		dp(N, 0);
@@ -22,8 +22,9 @@ public class Main_1463_1로만들기 {
 	private static void dp(int N, int cnt) {
 		if (dp[N] > cnt)
 			dp[N] = cnt;
-		else return;
-		
+		else
+			return;
+
 		if (N == 1) {
 			return;
 		}
